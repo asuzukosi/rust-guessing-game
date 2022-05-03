@@ -18,10 +18,10 @@ fn main(){
 
         let num_bytes = scanner.read_line(&mut guess)
             .expect("Failed to read line");
-        let guess: u32 = guess
-                            .trim()
-                            .parse()
-                            .expect("failed to parse guess into a string");
+        let guess: u32 = match guess.trim().parse() {
+                                Ok(num) => num,
+                                Err(_) => continue,
+                            };
 
         println!("The number you entered : {}", guess);
         println!("The number of bytes is : {}", num_bytes);
